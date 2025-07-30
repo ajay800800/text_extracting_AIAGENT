@@ -1,0 +1,17 @@
+# .render/render.yaml
+services:
+  - type: web
+    name: pdf-node-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: node index.js
+    plan: free
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: '1'
+  - type: web
+    name: pdf-python-worker
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python extract_text_auto.py
+    plan: free
